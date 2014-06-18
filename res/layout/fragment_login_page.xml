@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff" >
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <!-- View Title Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:text="@string/text_login_login"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+        
+        <!-- usernum Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_login_usernum" />
+        
+        <!-- usernum TextField -->
+        <EditText
+            android:id="@+id/et_login_usernum"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" 
+            android:hint="@string/text_login_hint_usernum"/>
+
+        <!-- password Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/text_login_userpswd" />
+        
+        <!-- password TextField -->
+        <EditText
+            android:id="@+id/et_login_userpswd"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:password="true" 
+            android:hint="@string/text_login_hint_userpswd"/>
+
+        <CheckBox
+            android:id="@+id/cb_login_rememberpswd"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_login_rememberpswd" />
+
+        <!-- error message -->
+        <TextView
+            android:id="@+id/tv_login_error"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="#e30000"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal" >
+            <!-- login -->
+            <Button
+                android:id="@+id/btn_login_submit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/text_login_login" />
+			<!-- undo -->
+            <Button
+                android:id="@+id/btn_login_undo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/text_login_undo" />
+        </LinearLayout>
+        <!-- register -->
+        <Button
+            android:id="@+id/btn_login_register"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@null"
+            android:text="@string/text_login_register"
+            android:textColor="#21dbd4"
+            android:textStyle="bold" />
+		
+    </LinearLayout>
+
+</ScrollView>
