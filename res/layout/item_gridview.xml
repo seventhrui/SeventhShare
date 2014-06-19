@@ -9,14 +9,23 @@
         android:id="@+id/ItemImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" >
-    </ImageView>
+        android:layout_centerHorizontal="true" 
+        android:src="@drawable/icon_share_qqweibo"/>
 
+    <ImageView
+        android:id="@+id/ItemSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ItemImage"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@id/ItemImage"
+        android:src="@drawable/icon_share_selected"
+        android:visibility="gone" />
     <TextView
         android:id="@+id/ItemText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ItemImage"
+        android:layout_below="@id/ItemImage"
         android:layout_centerHorizontal="true"
         android:textColor="#000000"
         android:textSize="10sp" >
