@@ -18,7 +18,7 @@ import android.widget.Button;
  *
  */
 public class SharkItOffActivity extends Activity implements SensorEventListener {
-
+	
 	Button clear;
 	// 定义sensor管理器
 	private SensorManager mSensorManager;

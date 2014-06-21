@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
     <Button
         android:id="@+id/clear"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_margin="20dp"
         android:text="摇一摇"
-        android:textSize="15sp"/>
+        android:textSize="15sp" />
 
 </LinearLayout>
