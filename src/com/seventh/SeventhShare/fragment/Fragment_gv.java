@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Fragment_gv extends Fragment {
+	private Context context;
 	private View rootView = null;
 	private GridView gv_funs;
 	private static Integer[] mIds = { R.drawable.icon_share_qqzone,R.drawable.icon_share_qqweibo,
@@ -39,8 +40,8 @@ public class Fragment_gv extends Fragment {
 	private static List<GridViewItemBean> gviblist;
 	private GridViewItemAdapter gviadapter;
 	
-	public Fragment_gv() {
-
+	public Fragment_gv(Context c) {
+		this.context=c;
 	}
 
 	@Override
@@ -54,8 +55,8 @@ public class Fragment_gv extends Fragment {
 	private void initView(LayoutInflater i, ViewGroup c) {
 		rootView = i.inflate(R.layout.fragment_gridview_page, c, false);
 		gv_funs = (GridView) rootView.findViewById(R.id.gv_funs);
-		gviadapter=getGridViewAdapter(getActivity().getApplicationContext());
-		Log.v("---context--->", getActivity().getApplicationContext()+"");
+		gviadapter=getGridViewAdapter(context);
+		Log.v("---context--->", context+"");
 		gv_funs.setAdapter(gviadapter);
 		gv_funs.setOnItemClickListener(new GridViewItemClickListener());
 	}
@@ -63,8 +64,8 @@ public class Fragment_gv extends Fragment {
 	private void initData() {
 		gviblist=new ArrayList<GridViewItemBean>();
 		// 获取平台列表
-		AbstractWeibo.initSDK(getActivity());
-		AbstractWeibo[] weibos = AbstractWeibo.getWeiboList(getActivity());
+		AbstractWeibo.initSDK(context);
+		AbstractWeibo[] weibos = AbstractWeibo.getWeiboList(context);
 		
 		for(AbstractWeibo aw : weibos)
 			getWeiboName(aw);
@@ -117,7 +118,7 @@ public class Fragment_gv extends Fragment {
 				long arg3) {
 			TextView tv_id=(TextView) arg1.findViewById(R.id.ItemText);
 			String messageid = tv_id.getText().toString();
-			Toast.makeText(getActivity(), messageid+","+arg2, Toast.LENGTH_SHORT).show();
+			Toast.makeText(context, messageid+","+arg2, Toast.LENGTH_SHORT).show();
 			
 			AbstractWeibo weibo = getWeibo(arg2);
 			if (weibo == null) {
@@ -185,8 +186,8 @@ public class Fragment_gv extends Fragment {
 		}
 
 		if (name != null) {
-			Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();
-			return AbstractWeibo.getWeibo(getActivity(), name);
+			Toast.makeText(context, name, Toast.LENGTH_SHORT).show();
+			return AbstractWeibo.getWeibo(context, name);
 		}
 		return null;
 	}
@@ -240,22 +241,22 @@ public class Fragment_gv extends Fragment {
 			switch (msg.arg1) {
 			case 1: // 成功
 				text = weibo.getName() + " completed at " + text;
-				Toast.makeText(getActivity(), text + "", Toast.LENGTH_SHORT)
+				Toast.makeText(context, text + "", Toast.LENGTH_SHORT)
 						.show();
 				break;
 			case 2: // 失败
 				text = weibo.getName() + " caught error at " + text;
-				Toast.makeText(getActivity(), text + "", Toast.LENGTH_SHORT)
+				Toast.makeText(context, text + "", Toast.LENGTH_SHORT)
 						.show();
 				break;
 			case 3: // 取消
 				text = weibo.getName() + " canceled at " + text;
-				Toast.makeText(getActivity(), text + "", Toast.LENGTH_SHORT)
+				Toast.makeText(context, text + "", Toast.LENGTH_SHORT)
 						.show();
 				break;
 			}
 			
-			AbstractWeibo[] weibos = AbstractWeibo.getWeiboList(getActivity());
+			AbstractWeibo[] weibos = AbstractWeibo.getWeiboList(context);
 			
 			for(AbstractWeibo aw : weibos)
 				getWeiboName(aw);

@@ -97,8 +97,7 @@ public class MainActivity extends Activity {
 	private void selectItem(int position) {
 		Fragment fragment = getFragment(position);
 		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.beginTransaction()
-				.replace(R.id.content_frame, fragment).commit();
+		fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
 		mDrawerList.setItemChecked(position, true);
 		setTitle(mPlanetTitles[position]);
@@ -187,6 +186,10 @@ public class MainActivity extends Activity {
 		case R.id.action_exit:
 			this.finish();
 			break;
+		case R.id.action_shark:
+			Intent i = new Intent();
+			i.setClass(getApplicationContext(), SharkItOffActivity.class);
+			startActivity(i);
 		}
 		return super.onOptionsItemSelected(item);
 	}

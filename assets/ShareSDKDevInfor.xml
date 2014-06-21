@@ -38,7 +38,7 @@
         AppKey="3201194191"
         AppSecret="0334252914651e8f76bad63337b3b78f"
         Id="1"
-        RedirectUrl="http://appgo.cn" />
+        RedirectUrl="https://api.weibo.com/oauth2/default.html" />
 
     <TencentWeibo
         SortId="2"

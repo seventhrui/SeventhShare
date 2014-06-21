@@ -7,9 +7,15 @@ import com.seventh.SeventhShare.R;
 import com.seventh.SeventhShare.adapter.ListViewItemAdapter;
 
 import android.app.Fragment;
+import android.app.Service;
 import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -30,7 +36,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.widget.SwipeRefreshLayout;
 
-public class Fragment_lv extends Fragment implements OnClickListener{
+public class Fragment_lv extends Fragment implements OnClickListener,SensorEventListener{
+	private Context context;
 	private View rootView = null;
 	private ListView lv_funs;
 	private SwipeRefreshLayout swipeLayout;
@@ -45,8 +52,17 @@ public class Fragment_lv extends Fragment implements OnClickListener{
 	private boolean btn_vocie = false;//
 	
 	private List<String> lsitem;
-	public Fragment_lv() {
+	
+	//定义sensor管理器
+	private SensorManager mSensorManager;
+	//震动
+	private Vibrator vibrator;
+	private static final int SENSOR_SHAKE = 10;
 
+	
+	
+	public Fragment_lv(Context c) {
+		this.context = c;
 	}
 
 	@Override
@@ -58,7 +74,7 @@ public class Fragment_lv extends Fragment implements OnClickListener{
 	private void initView(LayoutInflater i, ViewGroup c){
 		rootView = i.inflate(R.layout.fragment_listview_page, c, false);
 		lv_funs = (ListView) rootView.findViewById(R.id.lv_funs);
-		ListViewItemAdapter lvadapter = getListViewAdapter(getActivity().getApplicationContext());
+		ListViewItemAdapter lvadapter = getListViewAdapter(context);
 		lv_funs.setAdapter(lvadapter);
 		lv_funs.setOnItemClickListener(new ListViewItemClickListener());
 		
@@ -81,13 +97,14 @@ public class Fragment_lv extends Fragment implements OnClickListener{
 		mBtnRcd.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				//按下语音录制按钮时返回false执行父类OnTouch
-				Toast.makeText(getActivity(), "按住了", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "按住了", Toast.LENGTH_SHORT).show();
 				return true;
 			}
 		});
 		mBottom = (RelativeLayout) rootView.findViewById(R.id.btn_bottom);
 		chatting_mode_btn = (ImageView) rootView.findViewById(R.id.ivPopUp);
 		chatting_mode_btn.setOnClickListener(this);
+
 	}
 	
 	/**
@@ -115,7 +132,7 @@ public class Fragment_lv extends Fragment implements OnClickListener{
 			TextView tv=(TextView) arg1.findViewById(R.id.tv_lv_ItemText);
 			String s = tv.getText().toString();
 			Log.v("----a---->>", s);
-			Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
+			Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
 		}
 	}
 	/**
@@ -185,5 +202,17 @@ public class Fragment_lv extends Fragment implements OnClickListener{
 			}
 			break;
 		}
+	}
+
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSensorChanged(SensorEvent event) {
+		// TODO Auto-generated method stub
+		
 	}
 }

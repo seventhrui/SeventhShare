@@ -34,13 +34,13 @@ public class Fragment_Main extends Fragment {
 		Fragment fragment=null;
 		switch (num){
 		case 0:
-			fragment=new Fragment_lv();
+			fragment=new Fragment_lv(getActivity().getApplicationContext());
 			break;
 		case 1:
-			fragment=new Fragment_gv();
+			fragment=new Fragment_gv(getActivity().getApplicationContext());
 			break;
 		case 2:
-			fragment=new Fragment_Login();
+			fragment=new Fragment_Login(getActivity().getApplicationContext());
 			break;
 		}
 		FragmentManager fragmentManager = getFragmentManager();

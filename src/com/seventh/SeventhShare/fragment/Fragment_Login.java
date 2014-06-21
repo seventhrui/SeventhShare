@@ -3,6 +3,7 @@ package com.seventh.SeventhShare.fragment;
 import com.seventh.SeventhShare.R;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.Toast;
  * 
  */
 public class Fragment_Login extends Fragment {
+	private Context context;
 	private View rootView = null;
 	private EditText et_login_usernum;
 	private EditText et_login_userpswd;
@@ -26,8 +28,8 @@ public class Fragment_Login extends Fragment {
 	private Button btn_login_undo;
 	private Button btn_login_register;
 
-	public Fragment_Login() {
-
+	public Fragment_Login(Context c) {
+		this.context=c;
 	}
 
 	@Override
@@ -76,7 +78,6 @@ public class Fragment_Login extends Fragment {
 	class LoginOnclickListener implements OnClickListener {
 		@Override
 		public void onClick(View v) {
-			//Toast.makeText(getActivity(), v.getId() + "", Toast.LENGTH_SHORT)					.show();
 			switch (v.getId()) {
 			case R.id.btn_login_submit:
 				login();
@@ -97,7 +98,7 @@ public class Fragment_Login extends Fragment {
 		String loginresult = "";
 		String usernum = et_login_usernum.getText().toString().trim();
 		String userpswd = et_login_userpswd.getText().toString().trim();
-		Toast.makeText(getActivity(), usernum+","+userpswd, Toast.LENGTH_SHORT).show();
+		Toast.makeText(context, usernum+","+userpswd, Toast.LENGTH_SHORT).show();
 		return loginresult;
 	}
 }
