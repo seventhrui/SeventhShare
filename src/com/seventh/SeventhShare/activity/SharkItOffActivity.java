@@ -4,26 +4,33 @@ import com.seventh.SeventhShare.R;
 
 import android.app.Activity;
 import android.app.Service;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
 /**
  * 摇一摇
+ * 
  * @author Seventhrui
- *
+ * 
  */
 public class SharkItOffActivity extends Activity implements SensorEventListener {
-	
+
 	Button clear;
 	// 定义sensor管理器
 	private SensorManager mSensorManager;
 	// 震动
 	private Vibrator vibrator;
+	
+	private static final int RESULT_CAPTURE_IMAGE = 1;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,6 +73,18 @@ public class SharkItOffActivity extends Activity implements SensorEventListener 
 	}
 
 	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		case RESULT_CAPTURE_IMAGE:// 拍照
+			if (resultCode == RESULT_OK) {
+				Log.v("拍照", "照相完成");
+			}
+			break;
+		}
+	}
+
+	@Override
 	public void onSensorChanged(SensorEvent event) {
 		// TODO Auto-generated method stub
 		int sensorType = event.sensor.getType();
@@ -78,10 +97,13 @@ public class SharkItOffActivity extends Activity implements SensorEventListener 
 			 */
 			if ((Math.abs(values[0]) > 14 || Math.abs(values[1]) > 14 || Math
 					.abs(values[2]) > 14)) {
-				// 摇动手机后，设置button上显示的字为空
-				clear.setText(null);
 				// 摇动手机后，再伴随震动提示~~
 				vibrator.vibrate(100);
+				// 摇动手机后，设置button上显示的字为空
+				clear.setText(null);
+
+				/*Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				startActivityForResult(intent, 1);*/
 			}
 		}
 	}
